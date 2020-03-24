@@ -57,7 +57,7 @@ public class DynamicSizedArrayStack {
 	public static void main(String[] args) {
 		DynamicSizedArrayStack stack = new DynamicSizedArrayStack();
 		
-		stack.process("-1-2-34-567-89");
+		stack.process("-1-2-34-567-890");
 		
 		for (int i = 0; stack.getElement[i]!=null; i++) {
 			System.out.println(stack.getElement[i]);
