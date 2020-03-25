@@ -1,16 +1,16 @@
 package dataStructures;
 
-public class LinkedList {
+public class LinkedList<Item> {
 	
-	String element;
-	LinkedList nextNode;
+	Item element;
+	LinkedList<Item> nextNode;
 	
-	public LinkedList(String element) {
+	public LinkedList(Item element) {
 		this.element = element;
 		nextNode = null;
 	}
 	
-	public LinkedList(String element, LinkedList node) {
+	public LinkedList(Item element, LinkedList<Item> node) {
 		this.element = element;
 		nextNode = node;
 	}

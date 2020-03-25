@@ -2,15 +2,15 @@ package dataStructures;
 
 public class LLQueue {
 	
-	LinkedList head, tail;
+	LinkedList<String> head, tail;
 	
 	public void enqueue(String element) {
 		if (head==null && tail==null) {
-			head = new LinkedList(element);
+			head = new LinkedList<String>(element);
 			tail = head;
 		}
 		else {
-			LinkedList newNode = new LinkedList(element);
+			LinkedList<String> newNode = new LinkedList<String>(element);
 			if (head!=tail) {
 				tail.nextNode=newNode;
 				tail=newNode;
@@ -49,7 +49,7 @@ public class LLQueue {
 		LLQueue queue = new LLQueue();
 		
 		queue.process("-1-2-348-569-7");
-		LinkedList node = queue.head;
+		LinkedList<String> node = queue.head;
 		
 		while (node!=null) {
 			System.out.println(node.element);

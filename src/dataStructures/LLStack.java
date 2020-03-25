@@ -2,15 +2,15 @@ package dataStructures;
 
 public class LLStack {
 	
-	LinkedList root;
+	LinkedList<String> root;
 	
 	public void push(String element) {
 		
 		if(root == null) {
-			root = new LinkedList(element);
+			root = new LinkedList<String>(element);
 		}
 		else {
-			LinkedList newNode = new LinkedList(element, root);
+			LinkedList<String> newNode = new LinkedList<String>(element, root);
 			root = newNode;
 		}
 	}
@@ -37,7 +37,7 @@ public class LLStack {
 		
 		stack.process("-1-2-34-567");
 		
-		LinkedList node = stack.root;
+		LinkedList<String> node = stack.root;
 		
 		while (node!=null) {
 			System.out.println(node.element);
