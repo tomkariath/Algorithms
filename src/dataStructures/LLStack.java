@@ -37,11 +37,6 @@ public class LLStack {
 		
 		stack.process("-1-2-34-567");
 		
-		/*
-		 * stack.push("1"); stack.push("2"); stack.push("3"); stack.push("4");
-		 * stack.push("5"); stack.push("6"); stack.pop(); stack.pop(); stack.push("7");
-		 * stack.pop();
-		 */
 		LinkedList node = stack.root;
 		
 		while (node!=null) {
