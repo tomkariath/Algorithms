@@ -1,16 +1,16 @@
 
 package dataStructures;
 
-public class DynamicSizedArrayStack {
+public class DynamicArrayStack {
 
-	String[] getElement = new String[1];
+	String[] elementsArray = new String[1];
 	int index=0;
 
 	public void push (String element) {
-		if (index==getElement.length-1) {
-			getElement = expandArray(getElement);
+		if (index==elementsArray.length-1) {
+			elementsArray = expandArray(elementsArray);
 		}
-		getElement[index] =  element;
+		elementsArray[index] =  element;
 		index++;
 	}
 
@@ -18,10 +18,10 @@ public class DynamicSizedArrayStack {
 		if (index==0) {
 			return;
 		}
-		if (index>0 && index == getElement.length/4) {
-			getElement = contractArray(getElement);
+		if (index>0 && index == elementsArray.length/4) {
+			elementsArray = contractArray(elementsArray);
 		}
-		getElement[index-1] = null;
+		elementsArray[index-1] = null;
 		index--;
 	}
 
@@ -35,13 +35,13 @@ public class DynamicSizedArrayStack {
 	}
 
 	private static String[] contractArray(String[] original) {
-		String[] expandedArray = new String [original.length/2];
+		String[] contractedArray = new String [original.length/2];
 
-		for (int i = 0; i < original.length; i++) {
-			expandedArray[i] = original[i];
+		for (int i = 0; i < contractedArray.length; i++) {
+			contractedArray[i] = original[i];
 		}
 
-		return expandedArray;
+		return contractedArray;
 	}
 
 	public void process (String command) {
@@ -56,12 +56,12 @@ public class DynamicSizedArrayStack {
 	}
 	
 	public static void main(String[] args) {
-		DynamicSizedArrayStack stack = new DynamicSizedArrayStack();
+		DynamicArrayStack stack = new DynamicArrayStack();
 		
 		stack.process("-1-2-34-567-890");
 		
-		for (int i = 0; stack.getElement[i]!=null; i++) {
-			System.out.println(stack.getElement[i]);
+		for (int i = 0; stack.elementsArray[i]!=null; i++) {
+			System.out.println(stack.elementsArray[i]);
 		}
 	}
 }
