@@ -1,16 +1,37 @@
 package dataStructures;
 
-public class LLStack {
+import java.util.Iterator;
+
+public class LLStack<Item> implements Iterable<Item>{
 	
-	LinkedList<String> root;
 	
-	public void push(String element) {
+	private class ListIterator implements Iterator<Item>{
+		
+		LinkedList<Item> currentNode = root;
+
+		@Override
+		public boolean hasNext() {
+			return currentNode != null;
+		}
+
+		@Override
+		public Item next() {
+			Item item = currentNode.element;
+			currentNode = currentNode.nextNode;
+			return item;
+		}
+		
+	}
+	
+	LinkedList<Item> root;
+	
+	public void push(Item element) {
 		
 		if(root == null) {
-			root = new LinkedList<String>(element);
+			root = new LinkedList<Item>(element);
 		}
 		else {
-			LinkedList<String> newNode = new LinkedList<String>(element, root);
+			LinkedList<Item> newNode = new LinkedList<Item>(element, root);
 			root = newNode;
 		}
 	}
@@ -21,27 +42,29 @@ public class LLStack {
 		}
 	}
 	
-	public void process (String command) {
+	public static void process (LLStack<String> stack, String command) {
 		for (int i = 0; i < command.length(); i++) {
 			if (command.charAt(i)=='-') {
-				this.pop();
+				stack.pop();
 			}
 			else {
-				this.push(String.valueOf(command.charAt(i)));
+				stack.push(String.valueOf(command.charAt(i)));
 			}
 		}
 	}
 	
 	public static void main(String[] args) {
-		LLStack stack = new LLStack();
+		LLStack<String> stack = new LLStack<String>();
 		
-		stack.process("-1-2-34-567");
+		process(stack, "-1-2-34-567");
 		
-		LinkedList<String> node = stack.root;
-		
-		while (node!=null) {
-			System.out.println(node.element);
-			node = node.nextNode;
+		for (String element : stack) {
+			System.out.println(element);
 		}
+	}
+
+	@Override
+	public Iterator<Item> iterator() {
+		return new ListIterator();
 	}
 }

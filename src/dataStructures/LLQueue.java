@@ -1,16 +1,36 @@
 package dataStructures;
 
-public class LLQueue {
+import java.util.Iterator;
+
+public class LLQueue<Item> implements Iterable<Item>{
 	
-	LinkedList<String> head, tail;
+	private class ListIterator implements Iterator<Item>{
+		
+		LinkedList<Item> currentNode = head;
+
+		@Override
+		public boolean hasNext() {
+			return currentNode != null;
+		}
+
+		@Override
+		public Item next() {
+			Item item = currentNode.element;
+			currentNode = currentNode.nextNode;
+			return item;
+		}
+		
+	}
 	
-	public void enqueue(String element) {
+	LinkedList<Item> head, tail;
+	
+	public void enqueue(Item element) {
 		if (head==null && tail==null) {
-			head = new LinkedList<String>(element);
+			head = new LinkedList<Item>(element);
 			tail = head;
 		}
 		else {
-			LinkedList<String> newNode = new LinkedList<String>(element);
+			LinkedList<Item> newNode = new LinkedList<Item>(element);
 			if (head!=tail) {
 				tail.nextNode=newNode;
 				tail=newNode;
@@ -34,26 +54,29 @@ public class LLQueue {
 		}
 	}
 	
-	public void process (String command) {
+	public static void process (LLQueue<String> queue, String command) {
 		for (int i = 0; i < command.length(); i++) {
 			if (command.charAt(i)=='-') {
-				this.dequeue();
+				queue.dequeue();
 			}
 			else {
-				this.enqueue(String.valueOf(command.charAt(i)));
+				queue.enqueue(String.valueOf(command.charAt(i)));
 			}
 		}
 	}
 	
 	public static void main(String[] args) {
-		LLQueue queue = new LLQueue();
+		LLQueue<String> queue = new LLQueue<String>();
 		
-		queue.process("-1-2-348-569-7");
-		LinkedList<String> node = queue.head;
-		
-		while (node!=null) {
-			System.out.println(node.element);
-			node = node.nextNode;
+		process(queue, "-1-2-348-569-7");
+
+		for (String element : queue) {
+			System.out.println(element);
 		}
+	}
+
+	@Override
+	public Iterator<Item> iterator() {
+		return new ListIterator();
 	}
 }
