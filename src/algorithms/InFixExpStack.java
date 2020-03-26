@@ -6,7 +6,7 @@ public class InFixExpStack {
 
 	LLStack<Integer> integerStack = new LLStack<Integer>();
 	LLStack<String> operatorStack = new LLStack<String>();
-	int result, var1, var2, tempIndex=-1;
+	int result, var1, var2, tempIndex=-2;
 	
 	public Integer solveExpression (String expression) {
 		for (int i = 0; i < expression.length(); i++) {
