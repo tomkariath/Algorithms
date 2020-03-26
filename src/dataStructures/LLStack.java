@@ -36,10 +36,13 @@ public class LLStack<Item> implements Iterable<Item>{
 		}
 	}
 	
-	public void pop () {
+	public Item pop () {
 		if(root!=null) {
+			Item poppedItem = root.element;
 			root = root.nextNode;
+			return poppedItem;
 		}
+		return null;
 	}
 	
 	public static void process (LLStack<String> stack, String command) {
