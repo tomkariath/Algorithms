@@ -23,7 +23,8 @@ public class LLStack<Item> implements Iterable<Item>{
 		
 	}
 	
-	LinkedList<Item> root;
+	private LinkedList<Item> root;
+	private int size=0;
 	
 	public void push(Item element) {
 		
@@ -34,18 +35,20 @@ public class LLStack<Item> implements Iterable<Item>{
 			LinkedList<Item> newNode = new LinkedList<Item>(element, root);
 			root = newNode;
 		}
+		size++;
 	}
 	
 	public Item pop () {
 		if(root!=null) {
 			Item poppedItem = root.element;
 			root = root.nextNode;
+			size--;
 			return poppedItem;
 		}
 		return null;
 	}
 	
-	public static void process (LLStack<String> stack, String command) {
+	private static void process (LLStack<String> stack, String command) {
 		for (int i = 0; i < command.length(); i++) {
 			if (command.charAt(i)=='-') {
 				stack.pop();
@@ -56,6 +59,10 @@ public class LLStack<Item> implements Iterable<Item>{
 		}
 	}
 	
+	public int getSize() {
+		return size;
+	}
+	
 	public static void main(String[] args) {
 		LLStack<String> stack = new LLStack<String>();
 		
@@ -64,6 +71,7 @@ public class LLStack<Item> implements Iterable<Item>{
 		for (String element : stack) {
 			System.out.println(element);
 		}
+		System.out.println("Size "+stack.getSize());
 	}
 
 	@Override
