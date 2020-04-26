@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class SelectionSort {
 	
+	//Find the smallest and swap
 	public static void sort(int[] inputArray) {
 		int smallestIndex;
 		
@@ -15,6 +16,7 @@ public class SelectionSort {
 				}
 			}
 			swap(inputArray, smallestIndex, i);
+			//System.out.println(Arrays.toString(inputArray) + " "+inputArray[smallestIndex]);
 		}
 	}
 	
