@@ -5,12 +5,14 @@ import java.util.Arrays;
 public class InsertionSort {
 	
 	public static void sort(int[] inputArray) {
+		int count=0;
 		for (int i = 0; i < inputArray.length; i++) {
 			for (int j = i; j > 0; j--) {
 				if (inputArray[j] < inputArray[j-1]) {
 					swap(inputArray, j, j-1);
+					count++;
 				}
-				System.out.println(Arrays.toString(inputArray));
+				System.out.println(Arrays.toString(inputArray) +" "+count);
 			}
 		}
 	}
