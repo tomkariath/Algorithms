@@ -2,6 +2,7 @@ package algorithms;
 
 import java.util.Arrays;
 
+//Sort by recursively merging halves
 public class MergeSort {
 	static int[] tempArray;
 

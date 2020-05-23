@@ -2,6 +2,7 @@ package algorithms;
 
 import java.util.Arrays;
 
+//Sort by swapping elements into place
 public class InsertionSort {
 	
 	public static void sort(int[] inputArray) {

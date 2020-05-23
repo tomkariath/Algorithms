@@ -2,9 +2,9 @@ package algorithms;
 
 import java.util.Arrays;
 
+//Find the smallest and swap
 public class SelectionSort {
 	
-	//Find the smallest and swap
 	public static void sort(int[] inputArray) {
 		int smallestIndex;
 		

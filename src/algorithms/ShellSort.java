@@ -2,6 +2,7 @@ package algorithms;
 
 import java.util.Arrays;
 
+//insertion sort over a specified gap that widens (ideally 3*gap+1)
 public class ShellSort {
 
 	public static void sort(int[] inputArray) {

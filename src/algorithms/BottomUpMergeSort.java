@@ -2,6 +2,7 @@ package algorithms;
 
 import java.util.Arrays;
 
+//Sort by merging elements in the power of 2
 public class BottomUpMergeSort {
 	static int[] tempArray;
 
