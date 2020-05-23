@@ -20,6 +20,7 @@ public class RegexMatch {
 		
 		if (string.matches(regex)) {
 			System.out.println("true");
+			System.out.println(string.length());
 		}
 		else{
 			System.out.println("false");
