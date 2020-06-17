@@ -10,6 +10,11 @@ public class LinkedList<Item> {
 		nextNode = null;
 	}
 	
+	public LinkedList() {
+		this.element = null;
+		nextNode = null;
+	}
+	
 	public LinkedList(Item element, LinkedList<Item> node) {
 		this.element = element;
 		nextNode = node;
