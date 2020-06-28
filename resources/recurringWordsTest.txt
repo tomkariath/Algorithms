@@ -1,0 +1,5 @@
+This is text file
+This is also a test file
+1 2 3 test
+file check
+n most recurring word in a file

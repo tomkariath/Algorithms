@@ -1,13 +1,13 @@
 package problems;
 
-import dataStructures.LinkedList;
+import dataStructures.Node;
 import edu.princeton.cs.algs4.StdRandom;
 
 public class ShufflingLinkedList {
 
-	public LinkedList<Integer> randomize (LinkedList<Integer> node) {
-		LinkedList<Integer> prevNode=null;
-		LinkedList<Integer> firstNode=node;
+	public Node<Integer> randomize (Node<Integer> node) {
+		Node<Integer> prevNode=null;
+		Node<Integer> firstNode=node;
 
 		while (node!=null) {
 			if(StdRandom.uniform(2)>0) {
@@ -35,14 +35,14 @@ public class ShufflingLinkedList {
 	}
 
 	public static void main(String[] args) {
-		LinkedList<Integer> node1 = new LinkedList<Integer>(1);
-		LinkedList<Integer> node2 = new LinkedList<Integer>(2, node1);
-		LinkedList<Integer> node3 = new LinkedList<Integer>(3, node2);
-		LinkedList<Integer> node4 = new LinkedList<Integer>(4, node3);
-		LinkedList<Integer> node5 = new LinkedList<Integer>(5, node4);
+		Node<Integer> node1 = new Node<Integer>(1);
+		Node<Integer> node2 = new Node<Integer>(2, node1);
+		Node<Integer> node3 = new Node<Integer>(3, node2);
+		Node<Integer> node4 = new Node<Integer>(4, node3);
+		Node<Integer> node5 = new Node<Integer>(5, node4);
 
 		ShufflingLinkedList sll = new ShufflingLinkedList();
-		LinkedList<Integer> node = sll.randomize(node5);
+		Node<Integer> node = sll.randomize(node5);
 
 		while (node != null) {
 			System.out.println(node.getElement());

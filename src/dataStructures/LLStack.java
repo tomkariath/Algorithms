@@ -7,7 +7,7 @@ public class LLStack<Item> implements Iterable<Item>{
 	
 	private class ListIterator implements Iterator<Item>{
 		
-		LinkedList<Item> currentNode = root;
+		Node<Item> currentNode = root;
 
 		@Override
 		public boolean hasNext() {
@@ -23,16 +23,16 @@ public class LLStack<Item> implements Iterable<Item>{
 		
 	}
 	
-	private LinkedList<Item> root;
+	private Node<Item> root;
 	private int size=0;
 	
 	public void push(Item element) {
 		
 		if(root == null) {
-			root = new LinkedList<Item>(element);
+			root = new Node<Item>(element);
 		}
 		else {
-			LinkedList<Item> newNode = new LinkedList<Item>(element, root);
+			Node<Item> newNode = new Node<Item>(element, root);
 			root = newNode;
 		}
 		size++;

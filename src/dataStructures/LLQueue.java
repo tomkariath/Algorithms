@@ -6,7 +6,7 @@ public class LLQueue<Item> implements Iterable<Item>{
 	
 	private class ListIterator implements Iterator<Item>{
 		
-		LinkedList<Item> currentNode = head;
+		Node<Item> currentNode = head;
 
 		@Override
 		public boolean hasNext() {
@@ -22,15 +22,15 @@ public class LLQueue<Item> implements Iterable<Item>{
 		
 	}
 	
-	LinkedList<Item> head, tail;
+	Node<Item> head, tail;
 	
 	public void enqueue(Item element) {
 		if (head==null && tail==null) {
-			head = new LinkedList<Item>(element);
+			head = new Node<Item>(element);
 			tail = head;
 		}
 		else {
-			LinkedList<Item> newNode = new LinkedList<Item>(element);
+			Node<Item> newNode = new Node<Item>(element);
 			if (head!=tail) {
 				tail.nextNode=newNode;
 				tail=newNode;

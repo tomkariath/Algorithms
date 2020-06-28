@@ -1,29 +1,29 @@
 package dataStructures;
 
-public class LinkedList<Item> {
+public class Node<Item> {
 	
 	Item element;
-	LinkedList<Item> nextNode;
+	Node<Item> nextNode;
 	
-	public LinkedList(Item element) {
+	public Node(Item element) {
 		this.element = element;
 		nextNode = null;
 	}
 	
-	public LinkedList() {
+	public Node() {
 		this.element = null;
 		nextNode = null;
 	}
 	
-	public LinkedList(Item element, LinkedList<Item> node) {
+	public Node(Item element, Node<Item> node) {
 		this.element = element;
 		nextNode = node;
 	}
 	
-	public LinkedList<Item> getNextNode() {
+	public Node<Item> getNextNode() {
 		return nextNode;
 	}
-	public void setNextNode(LinkedList<Item> node) {
+	public void setNextNode(Node<Item> node) {
 		nextNode = node;
 	}
 
