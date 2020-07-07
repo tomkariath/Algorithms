@@ -22,7 +22,7 @@ public class QuickSortRepeat {
 	public void sort(String[] inputArray) {
 		//Shuffling to optimize sort
 		StdRandom.shuffle(inputArray);
-		System.out.println(Arrays.toString(inputArray));
+		//System.out.println(Arrays.toString(inputArray));
 		sort(inputArray, 0, inputArray.length - 1);
 	}
 
@@ -53,8 +53,10 @@ public class QuickSortRepeat {
 			}
 		}
 
-		System.out.println(partitionElement + Arrays.toString(inputArray));
-		System.out.println("-------------------------------");
+		/*
+		 * System.out.println(partitionElement + Arrays.toString(inputArray));
+		 * System.out.println("-------------------------------");
+		 */
 
 		sort(inputArray, low, lesser - 1);
 		sort(inputArray, greater + 1, high);
