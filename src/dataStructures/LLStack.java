@@ -2,7 +2,7 @@ package dataStructures;
 
 import java.util.Iterator;
 
-public class LLStack<Item> implements Iterable<Item>{
+public class LLStack<Item extends Comparable<Item>> implements Iterable<Item>{
 	
 	
 	private class ListIterator implements Iterator<Item>{

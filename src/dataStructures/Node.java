@@ -1,6 +1,6 @@
 package dataStructures;
 
-public class Node<Item> {
+public class Node<Item extends Comparable<Item>> implements Comparable<Item>{
 	
 	Item element;
 	Node<Item> nextNode;
@@ -33,5 +33,18 @@ public class Node<Item> {
 
 	public void setElement(Item element) {
 		this.element = element;
+	}
+
+	@Override
+	public int compareTo(Item o) {
+		if (this.element.compareTo(o)>0) {
+			return 1;
+		}
+		else if (this.element.compareTo(o)<0) {
+			return -1;
+		}
+		else {
+			return 0;
+		}
 	}
 }
