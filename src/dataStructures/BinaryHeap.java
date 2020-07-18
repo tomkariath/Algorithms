@@ -2,10 +2,14 @@ package dataStructures;
 
 public class BinaryHeap {
 
-	ResizingArray heapArray = new ResizingArray();
+	private ResizingArray heapArray = new ResizingArray();
+	
+	public int getSize() {
+		return heapArray.getLength();
+	}
 
 	// insertion
-	private void insert(String value) {
+	public void insert(String value) {
 		heapArray.put(value);
 		if (heapArray.getLength() > 1 && value.compareToIgnoreCase(getParent(heapArray.getLength() - 1)) > 0) {
 			swim(heapArray.getLength() - 1);
@@ -38,38 +42,51 @@ public class BinaryHeap {
 	}
 
 	// deleteMax
-	private void deleteMax() {
+	public String deleteMax() {
 		if (heapArray.getLength() == 0) {
-			return;
+			return null;
 		}
+		String max = getMax();
 		swap(0, heapArray.getLength() - 1);
 		heapArray.setLength(heapArray.getLength() - 1);
 
-		// TODO sink logic
-		if (getMaxChild(0) != -1 && heapArray.get(0).compareToIgnoreCase(heapArray.get(getMaxChild(0))) < 0) {
-			sink(0);
+		int maxChild = getMaxChild(0);
+		// sink logic
+		if (maxChild != -1 && 
+				heapArray.get(0).compareToIgnoreCase(heapArray.get(maxChild)) < 0) {
+			sink(0, maxChild);
 		}
+		return max;
 	}
 
 	// sink
-	private void sink(int index) {
-		int maxChildIndex = getMaxChild(index);
-		swap(index, maxChildIndex);
+	private void sink(int index, int maxChild) {
+		int maxChildIndex = maxChild;
+		if (maxChildIndex!=-1) {
+			swap(index, maxChildIndex);
+		}
+		
 		index = maxChildIndex;
-		if (getMaxChild(index) != -1
-				&& heapArray.get(index).compareToIgnoreCase(heapArray.get(getMaxChild(index))) < 0) {
-			sink(index);
+		maxChild = getMaxChild(index);
+		if (maxChild != -1 && 
+				heapArray.get(index).compareToIgnoreCase(heapArray.get(maxChild)) <= 0) {
+			sink(index, maxChild);
 		}
 	}
 
+	//get Child with Max value
 	private int getMaxChild(int index) {
-		int child1 = (index + 1) * 2;
-		int child2 = ((index + 1) * 2) - 1;
+		int child1 = (index*2) + 1;
+		int child2 = (index*2) + 2;
 
-		if (child1 < heapArray.getLength() - 1 && (child2 > heapArray.getLength()
-				|| heapArray.get(child1).compareToIgnoreCase(heapArray.get(child2)) > 0)) {
+		/*
+		 * System.out.println("Leangth "+heapArray.getLength() + child1 + child2);
+		 * System.out.println(heapArray.get(child1) +"vs"+ heapArray.get(child2));
+		 */
+		if (child1 < heapArray.getLength() && (child2 > heapArray.getLength()
+				|| heapArray.get(child1).compareToIgnoreCase(heapArray.get(child2)) >= 0)) {
 			return child1;
-		} else if (child2 < heapArray.getLength() - 1 && (child1 > heapArray.getLength()
+		} else if (child2 < heapArray.getLength() && (child1 > heapArray.getLength()
 				|| heapArray.get(child1).compareToIgnoreCase(heapArray.get(child2)) < 0)) {
 			return child2;
 		} else {
@@ -78,7 +95,7 @@ public class BinaryHeap {
 	}
 
 	// process
-	private void process(String command) {
+	public void process(String command) {
 		for (int i = 0; i < command.length(); i++) {
 			if (command.charAt(i) == '-') {
 				this.deleteMax();
@@ -88,8 +105,6 @@ public class BinaryHeap {
 		}
 	}
 
-	// get Children
-
 	@Override
 	public String toString() {
 		return heapArray.toString();
@@ -98,10 +113,13 @@ public class BinaryHeap {
 	public static void main(String[] args) {
 		BinaryHeap bHeap = new BinaryHeap();
 
-		// bHeap.process("12345-");
+		 //bHeap.process("12345--");
 		bHeap.process("-1-2-348-569-7-");
+		//bHeap.process("aruvilibertysong");
 
 		System.out.println(bHeap);
+		
+		System.out.println("Size = "+ bHeap.getSize());
 	}
 
 }
