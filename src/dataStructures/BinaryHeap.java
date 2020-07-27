@@ -2,7 +2,7 @@ package dataStructures;
 
 public class BinaryHeap {
 
-	private ResizingArray heapArray = new ResizingArray();
+	private ResizingArray<String> heapArray = new ResizingArray<String>();
 	
 	public int getSize() {
 		return heapArray.getLength();

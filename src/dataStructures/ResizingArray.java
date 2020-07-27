@@ -1,22 +1,23 @@
 package dataStructures;
 
-public class ResizingArray {
-	private String[] array;
+public class ResizingArray<Type extends Comparable<Type>> {
+	private Type[] array;
 	private int length;
 	
+	@SuppressWarnings("unchecked")
 	public ResizingArray() {
-		array = new String[1];
+		array = (Type[]) new Comparable[1];
 		length =0;
 	}
 	
-	public void put(int index, String value) {
+	public void put(int index, Type value) {
 		if (this.length==array.length-1) {
 			array = expandArray(array);
 		}
 		array[index] =  value;
 	}
 	
-	public void put(String value) {
+	public void put(Type value) {
 		if (this.length==array.length-1) {
 			array = expandArray(array);
 		}
@@ -24,12 +25,13 @@ public class ResizingArray {
 		this.length++;
 	}
 	
-	public String get(int index) {
+	public Type get(int index) {
 		return array[index];
 	}
 
-	private String[] expandArray(String[] original) {
-		String[] expandedArray = new String [original.length*2];
+	@SuppressWarnings("unchecked")
+	private Type[] expandArray(Type[] original) {
+		Type[] expandedArray = (Type[]) new Comparable [original.length*2];
 		for (int i = 0; i < original.length; i++) {
 			expandedArray[i] = original[i];
 		}
