@@ -23,6 +23,11 @@ public class LLQueue<Item extends Comparable<Item>> implements Iterable<Item>{
 	}
 	
 	Node<Item> head, tail;
+	int size=0;
+	
+	public int getSize() {
+		return size;
+	}
 	
 	public void enqueue(Item element) {
 		if (head==null && tail==null) {
@@ -40,10 +45,13 @@ public class LLQueue<Item extends Comparable<Item>> implements Iterable<Item>{
 				head.nextNode=tail;
 			}
 		}
+		size++;
 	}
 	
-	public void dequeue() {
+	public Item dequeue() {
+		Item value = null;
 		if(head!=null) {
+			value = head.element;
 			if(head==tail) {
 				tail=null;
 				head=null;
@@ -51,7 +59,9 @@ public class LLQueue<Item extends Comparable<Item>> implements Iterable<Item>{
 			else {
 				head = head.nextNode;
 			}
+			size--;
 		}
+		return value;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -66,6 +76,20 @@ public class LLQueue<Item extends Comparable<Item>> implements Iterable<Item>{
 		}
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder queueString = new StringBuilder("[");
+
+		for (Item item : this) {
+			queueString.append(item.toString() + ",");
+		}
+
+		queueString.deleteCharAt(queueString.length() - 1);
+		queueString.append("]");
+
+		return queueString.toString();
+	}
+	
 	public static void main(String[] args) {
 		LLQueue<String> queue = new LLQueue<String>();
 		
@@ -74,6 +98,7 @@ public class LLQueue<Item extends Comparable<Item>> implements Iterable<Item>{
 		for (String element : queue) {
 			System.out.println(element);
 		}
+		System.out.println(queue.size);
 	}
 
 	@Override

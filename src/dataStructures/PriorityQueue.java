@@ -17,23 +17,29 @@ public class PriorityQueue<Item extends Comparable<Item>> extends LLQueue<Item> 
 	}
 
 	// dequeue removes smallest element
-	public void dequeue() {
-		if (head != null) {
+	public Item dequeue() {
+		Item value = null;
+		if(head!=null) {
+			value = head.element;
 			if (head == tail) {
 				tail = null;
 				head = null;
 				size--;
 			} else {
-				dequeue(getSmallestElement());
+				value = dequeue(getSmallestElement());
 				size--;
 			}
 		}
+		return value;
 	}
 
-	private void dequeue(Item smallestElement) {
+	private Item dequeue(Item smallestElement) {
+		Item value = null;
 		if (head == tail) {
+			value = head.element;
 			head = tail = null;
 		} else if (smallestElement == head.element) {
+			value = head.element;
 			head = head.nextNode;
 		} else {
 			Node<Item> previousNode = this.head;
@@ -42,8 +48,10 @@ public class PriorityQueue<Item extends Comparable<Item>> extends LLQueue<Item> 
 				previousNode = previousNode.getNextNode();
 			}
 
+			value = previousNode.getNextNode().element;
 			previousNode.setNextNode(previousNode.getNextNode().getNextNode());
 		}
+		return value;
 	}
 	
 	private Item getSmallestElement() {

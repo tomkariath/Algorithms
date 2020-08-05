@@ -9,5 +9,29 @@ public class Test {
 		int[][] tempBoard = new int[3][2];
 		tempBoard = Arrays.copyOf(test, 3);
 		System.out.println(Arrays.deepToString(tempBoard));
+		
+		double a = 0.0;
+		double b = -0.0;
+		Double x = Double.valueOf(a);
+		Double y = Double.valueOf(b);
+		
+		double c = Double.NaN;
+		double d = Double.NaN;
+		Double p = Double.valueOf(c);
+		Double q = Double.valueOf(d);
+		
+		if (a==b) {
+			System.out.println("double: 0.0 == -0.0");
+		}
+		if (!x.equals(y)) {
+			System.out.println("Double: 0.0 != -0.0");
+		}
+		
+		if (c!=d) {
+			System.out.println("double: NaN != NaN");
+		}
+		if (p.equals(q)) {
+			System.out.println("Double: NaN == NaN");
+		}
 	}
 }
