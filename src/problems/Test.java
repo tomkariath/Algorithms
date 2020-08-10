@@ -33,5 +33,16 @@ public class Test {
 		if (p.equals(q)) {
 			System.out.println("Double: NaN == NaN");
 		}
+		
+		String test1="..H"; 
+		if (test1.contains("HH")||!(test1.contains("H"))){
+			System.out.println("fail");
+		}
+		System.out.println(test1.replaceAll("\\.", "B"));
+		
+		int ab = 3;
+		int xy = 2;
+		
+		System.out.println(Math.pow(ab, xy));
 	}
 }
