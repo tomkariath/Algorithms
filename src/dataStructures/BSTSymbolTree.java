@@ -1,6 +1,7 @@
 package dataStructures;
 
 public class BSTSymbolTree<Key extends Comparable<Key>, Value extends Comparable<Value>> {
+	
 	private class Node {
 		Key key;
 		Value value;
@@ -184,70 +185,65 @@ public class BSTSymbolTree<Key extends Comparable<Key>, Value extends Comparable
 	}
 
 	public void deleteMin() {
-		if (root==null) {
+		if (root == null) {
 			return;
 		}
 		root = deleteMin(root);
 	}
 
 	private Node deleteMin(Node node) {
-		
+
 		if (node.left != null) {
 			node.left = deleteMin(node.left);
 			return node;
 		} else {
 			return node.right;
-		}		
+		}
 	}
-	
+
 	public void deleteMax() {
-		if (root==null) {
+		if (root == null) {
 			return;
 		}
 		root = deleteMax(root);
 	}
 
 	private Node deleteMax(Node node) {
-		
+
 		if (node.right != null) {
 			node.right = deleteMax(node.right);
 			return node;
 		} else {
 			return node.left;
-		}		
+		}
 	}
-	
-	public void deleteKey (Key key) {
+
+	public void deleteKey(Key key) {
 		if (root == null) {
 			return;
 		}
 		root = deleteKey(root, key);
 	}
-	
+
 	private Node deleteKey(Node node, Key key) {
 		if (node == null) {
 			return null;
 		}
-		
+
 		int cmpResult = key.compareTo(node.key);
-		
+
 		if (cmpResult > 0) {
 			node.right = deleteKey(node.right, key);
-		}
-		else if (cmpResult < 0) {
+		} else if (cmpResult < 0) {
 			node.left = deleteKey(node.left, key);
-		}
-		else {
+		} else {
 			if (node.right == null && node.left == null) {
 				return null;
-			}
-			else if (node.right == null) {
+			} else if (node.right == null) {
 				return node.left;
-			}
-			else if (node.left == null) {
+			} else if (node.left == null) {
 				return node.right;
-			}
-			else {
+			} else {
 				Node temp = getMin(node.right);
 				temp.left = node.left;
 				temp.right = deleteMin(node.right);
@@ -256,6 +252,69 @@ public class BSTSymbolTree<Key extends Comparable<Key>, Value extends Comparable
 		}
 		node.size = 1 + getSize(node.left) + getSize(node.right);
 		return node;
+	}
+
+	private int rangeSearch(Key fromKey, Key toKey) {
+		int fromRank = getRankFrom(root, fromKey);
+		int toRank = getRankTo(root, toKey);
+
+		return toRank - fromRank;
+	}
+
+	private int getRankFrom(Node node, Key fromKey) {
+		if (node == null) {
+			return -1;
+		}
+
+		int value = -1;
+		int cmpValue = fromKey.compareTo(node.key);
+
+		if (cmpValue == 0) {
+			value = rank(node.key);
+		}
+		// right branch
+		else if (cmpValue > 0) {
+			if (fromKey.compareTo(node.right.key) < 0 && node.right.left == null) {
+				value = rank(node.key);
+			} else {
+				value = getRankFrom(node.right, fromKey);
+			}
+		}
+		// left branch
+		else {
+			value = getRankFrom(node.left, fromKey);
+			if (value == -1) {
+				value = rank(node.key);
+			}
+		}
+
+		return value;
+	}
+
+	private int getRankTo(Node node, Key toKey) {
+		if (node == null) {
+			return -1;
+		}
+
+		int value = -1;
+		int cmpValue = toKey.compareTo(node.key);
+
+		if (cmpValue == 0) {
+			value = rank(node.key);
+		} else if (cmpValue < 0) {
+			if (toKey.compareTo(node.left.key) > 0 && node.left.right == null) {
+				value = rank(node.key);
+			} else {
+				value = getRankFrom(node.right, toKey);
+			}
+		} else {
+			value = getRankTo(node.right, toKey);
+			if (value == -1) {
+				value = rank(node.key);
+			}
+		}
+
+		return value;
 	}
 
 	public static void main(String[] args) {
@@ -287,14 +346,16 @@ public class BSTSymbolTree<Key extends Comparable<Key>, Value extends Comparable
 		System.out.println("Max " + bst.maxNode());
 
 		System.out.println("Rank " + bst.rank("Aromale"));
-		
+
 		bst.deleteMin();
 		System.out.println(bst);
-		
+
 		bst.deleteMax();
 		System.out.println(bst);
-		
+
 		bst.deleteKey("Kannane");
 		System.out.println(bst);
+
+		System.out.println(bst.rangeSearch("Ey", "Sinamika"));
 	}
 }
