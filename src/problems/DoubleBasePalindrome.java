@@ -29,7 +29,6 @@ public class DoubleBasePalindrome {
     }
 
     private static boolean isBaseKPalindrome (int number, int base){
-
         StringBuilder convertedNumber = new StringBuilder();
         while (number > 0) {
             int digit = number % base;
