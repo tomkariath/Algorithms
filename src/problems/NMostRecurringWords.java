@@ -3,24 +3,20 @@ package problems;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class NMostRecurringWords {
 
 	public static void main(String[] args) {
 		try {
-			Integer wordCount = 0;
+			Integer wordCount;
 			Stream<String> stream = Files.lines(Paths.get("resources/recurringWordsTest.txt"));
-			String[] inputLines = stream.map(s -> s.toLowerCase()).toArray(String[]::new);
+			String[] inputLines = stream.map(String::toLowerCase).toArray(String[]::new);
 			stream.close();
 
-			HashMap<String, Integer> wordMap = new HashMap<String, Integer>();
-			ArrayList<String> resultMap = new ArrayList<String>();
+			HashMap<String, Integer> wordMap = new HashMap<>();
+			ArrayList<String> resultMap = new ArrayList<>();
 
 			for (String line : inputLines) {
 				System.out.println(line);
@@ -37,7 +33,7 @@ public class NMostRecurringWords {
 				}
 			}
 
-			List<Integer> countList = new ArrayList<Integer>(wordMap.values());
+			List<Integer> countList = new ArrayList<>(wordMap.values());
 			Collections.sort(countList);
 			Collections.reverse(countList);
 
@@ -47,10 +43,8 @@ public class NMostRecurringWords {
 					break;
 				}
 				for (Map.Entry<String, Integer> entry : wordMap.entrySet()) {
-					if (count == entry.getValue()) {
-						if (resultMap.contains(entry.getKey())) {
-							continue;
-						} else {
+					if (Objects.equals(count, entry.getValue())) {
+						if (!resultMap.contains(entry.getKey())) {
 							resultMap.add(entry.getKey());
 							i++;
 							break;

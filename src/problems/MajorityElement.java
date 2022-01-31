@@ -21,10 +21,9 @@ import java.util.HashMap;
 
 public class MajorityElement {
     public static void main(String[] args) {
-        int arraySize = 1;
-        int[] inputArray = { 15 };
+        int[] inputArray = { 15,16 };
 
-        System.out.println(getMajorityElement(inputArray, arraySize));
+        System.out.println(getMajorityElement(inputArray, inputArray.length));
     }
 
     private static int getMajorityElement(int[] inputArray, int arraySize){
