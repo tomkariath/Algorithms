@@ -1,8 +1,8 @@
 package dataStructures;
 
-public class BinaryHeap {
+public class MaxHeap {
 
-	private ResizingArray<String> heapArray = new ResizingArray<String>();
+	private final ResizingArray<String> heapArray = new ResizingArray<>();
 	
 	public int getSize() {
 		return heapArray.getLength();
@@ -80,7 +80,7 @@ public class BinaryHeap {
 		int child2 = (index*2) + 2;
 
 		/*
-		 * System.out.println("Leangth "+heapArray.getLength() + child1 + child2);
+		 * System.out.println("Length "+heapArray.getLength() + child1 + child2);
 		 * System.out.println(heapArray.get(child1) +"vs"+ heapArray.get(child2));
 		 */
 		if (child1 < heapArray.getLength() && (child2 > heapArray.getLength()
@@ -111,7 +111,7 @@ public class BinaryHeap {
 	}
 
 	public static void main(String[] args) {
-		BinaryHeap bHeap = new BinaryHeap();
+		MaxHeap bHeap = new MaxHeap();
 
 		 //bHeap.process("12345--");
 		bHeap.process("-1-2-348-569-7-");

@@ -1,10 +1,10 @@
 package problems;
 
-import dataStructures.BinaryHeap;
+import dataStructures.MaxHeap;
 
 public class FindMedian {
 
-	private BinaryHeap heap = new BinaryHeap();
+	private MaxHeap heap = new MaxHeap();
 	
 	public void insert(String value) {
 		heap.insert(value);
