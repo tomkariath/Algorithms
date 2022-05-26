@@ -1,12 +1,12 @@
 package algorithms;
 
-public class QuickFind implements DisjointedSet {
+public class DisjointedSetQuickFind implements DisjointedSet {
 
     private static final int SIZE = 10;
 
     int[] root = new int[SIZE];
 
-    QuickFind(){
+    DisjointedSetQuickFind(){
         for (int i=0; i<SIZE; i++){
             root[i] = i;
         }
@@ -14,7 +14,7 @@ public class QuickFind implements DisjointedSet {
     // 1-2-5-6-7 3-8-9 4
 
     public static void main(String[] args) {
-        QuickFind quickFind = new QuickFind();
+        DisjointedSetQuickFind quickFind = new DisjointedSetQuickFind();
         quickFind.connect(1,2);
         quickFind.connect(2,5);
         quickFind.connect(5,6);
@@ -28,7 +28,7 @@ public class QuickFind implements DisjointedSet {
     }
 
     @Override
-    public int getParent(int a) {
+    public int getRoot(int a) {
         return root[a];
     }
 

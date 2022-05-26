@@ -4,7 +4,7 @@ import dataStructures.Cell;
 
 import java.util.*;
 
-public class Astar {
+public class AStar {
 
     Cell[][] grid;
     int size;
@@ -12,7 +12,7 @@ public class Astar {
     List<Cell> blocked;
     boolean isTargetReached;
 
-    public Astar(int size, List<Cell> blocked){
+    public AStar(int size, List<Cell> blocked){
         unvisited = new PriorityQueue<>();
         this.size = size;
         grid = new Cell[size][size];
@@ -87,7 +87,7 @@ public class Astar {
 
     public static void main(String[] args) {
         List<Cell> blocked = List.of(new Cell(2,2), new Cell(1,1), new Cell(2,3));
-        Astar astar = new Astar(4, blocked);
+        AStar astar = new AStar(4, blocked);
 
         astar.process(new Cell(0,0), new Cell(3,3));
     }

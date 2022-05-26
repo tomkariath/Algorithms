@@ -17,11 +17,6 @@ public class Cell implements Comparable<Cell>{
         this.y = y;
     }
 
-    void set(int x, int y){
-        this.x = x;
-        this.y = y;
-    }
-
     public void setDistance(int distanceFromStart, Cell target){
         this.distanceFromStart = distanceFromStart;
         this.distanceFromTarget = getDiagonalDistance(x, y, target.x, target.y);
@@ -177,18 +172,6 @@ public class Cell implements Comparable<Cell>{
     @Override
     public String toString() {
         return "x:"+x+" y:"+y+" distance:"+totalDistance;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public int getTotalDistance() {
-        return totalDistance;
     }
 
     public int getDistanceFromStart() {
