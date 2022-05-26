@@ -10,8 +10,7 @@ public class Cell implements Comparable<Cell>{
     int distanceFromTarget;
     int distanceFromStart;
     int totalDistance;
-
-    boolean isVisited;
+    Cell previousCell;
 
     public Cell(int x, int y){
         this.x = x;
@@ -178,5 +177,29 @@ public class Cell implements Comparable<Cell>{
     @Override
     public String toString() {
         return "x:"+x+" y:"+y+" distance:"+totalDistance;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getTotalDistance() {
+        return totalDistance;
+    }
+
+    public int getDistanceFromStart() {
+        return distanceFromStart;
+    }
+
+    public void setPreviousCell(Cell previousCell) {
+        this.previousCell = previousCell;
+    }
+
+    public Cell getPreviousCell() {
+        return previousCell;
     }
 }
