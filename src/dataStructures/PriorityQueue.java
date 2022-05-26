@@ -86,7 +86,7 @@ public class PriorityQueue<Item extends Comparable<Item>> extends LLQueue<Item> 
 		return queueString.toString();
 	}
 	
-	public Item getrandomSample() {
+	public Item getRandomSample() {
 		int index = StdRandom.uniform(getSize());
 
 		if (head == tail || index ==0) {
@@ -104,7 +104,7 @@ public class PriorityQueue<Item extends Comparable<Item>> extends LLQueue<Item> 
 	}
 	
 	public Item dequeueRandom() {
-		Item sample = getrandomSample();
+		Item sample = getRandomSample();
 		dequeue(sample);
 		return sample;
 	}
@@ -119,7 +119,7 @@ public class PriorityQueue<Item extends Comparable<Item>> extends LLQueue<Item> 
 		
 		System.out.println("Size=" + queue.getSize());
 		
-		System.out.println(queue.getrandomSample());
+		System.out.println(queue.getRandomSample());
 		
 		System.out.println(queue.dequeueRandom());
 		System.out.println(queue);
