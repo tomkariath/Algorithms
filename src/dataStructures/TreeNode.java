@@ -4,13 +4,13 @@ public class TreeNode {
 	private int value;
 	private TreeNode leftChild;
 	private TreeNode rightChild;
-	private int distaneFromRoot;
+	private int distanceFromRoot;
 
 	public TreeNode(int value) {
 		this.value = value;
 		this.leftChild = null;
 		this.rightChild = null;
-		this.distaneFromRoot = 0;
+		this.distanceFromRoot = 0;
 	}
 
 	public int getValue() {
@@ -27,8 +27,9 @@ public class TreeNode {
 
 	public void setLeftChild(TreeNode leftChild) {
 		this.leftChild = leftChild;
-		if (leftChild != null)
-			leftChild.distaneFromRoot = this.distaneFromRoot + 1;
+		if (leftChild != null) {
+			leftChild.distanceFromRoot = this.distanceFromRoot + 1;
+		}
 	}
 
 	public TreeNode getRightChild() {
@@ -38,21 +39,17 @@ public class TreeNode {
 	public void setRightChild(TreeNode rightChild) {
 		this.rightChild = rightChild;
 		if (rightChild != null)
-			rightChild.distaneFromRoot = this.distaneFromRoot + 1;
+			rightChild.distanceFromRoot = this.distanceFromRoot + 1;
 	}
 
-	public int getDistaneFromRoot() {
-		return distaneFromRoot;
-	}
-
-	public void setDistaneFromRoot(int distaneFromRoot) {
-		this.distaneFromRoot = distaneFromRoot;
+	public int getDistanceFromRoot() {
+		return distanceFromRoot;
 	}
 
 	public static void displayTree(TreeNode root) {
 		if (root.getLeftChild() != null)
 			displayTree(root.getLeftChild());
-		System.out.print("(" + root.value + " " + root.distaneFromRoot + ")");
+		System.out.print("(" + root.value + " " + root.distanceFromRoot + ")");
 		if (root.getRightChild() != null)
 			displayTree(root.getRightChild());
 	}

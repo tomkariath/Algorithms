@@ -105,7 +105,7 @@ public class LCABinaryTree {
 		
 		TreeNode lca = findLCA(node1, node2);
 		if (lca!=null)
-			return node1.getDistaneFromRoot() + node2.getDistaneFromRoot() - (2 * lca.getDistaneFromRoot());
+			return node1.getDistanceFromRoot() + node2.getDistanceFromRoot() - (2 * lca.getDistanceFromRoot());
 		else 
 			return -1;
 	}
