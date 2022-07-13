@@ -162,9 +162,11 @@ public class Cell implements Comparable<Cell>{
             return true;
         }
 
-        if (!(obj instanceof Cell cell)){
+        if (!(obj instanceof Cell)){
             return false;
         }
+
+        Cell cell = (Cell) obj;
 
         return x==cell.x && y== cell.y;
     }

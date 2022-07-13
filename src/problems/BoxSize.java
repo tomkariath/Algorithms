@@ -2,30 +2,44 @@ package problems;
 
 import java.util.Arrays;
 
+/**
+ * Given the box sizes find the least box size that can accommodate the object
+ */
+
 public class BoxSize {
 
 	public static void main(String[] args) {
-		int[] boxSizes = {10,20,30,40,50,60,70,80,90};
-		int objectSize = 97;
-		
-		System.out.println(getBoxSize(boxSizes, objectSize));
+		int[] boxSizes = {2, 9, 41, 51, 58, 68, 74, 75, 80, 87};
+		int objectSize = 1;
+		System.out.println(getBestBox(boxSizes, objectSize));
 	}
 
-	private static int getBoxSize(int[] boxSizes, int objectSize) {
-		int length = boxSizes.length;
-		
-		System.out.println(length/2 +" "+ objectSize);
-		if (boxSizes[length/2] > objectSize && (length/2 == 0 || boxSizes[(length/2)-1] < objectSize)) {
-			return boxSizes[length/2];
+	private static int getBestBox(int[] boxSizes, int objectSize){
+		Arrays.sort(boxSizes);
+
+		if (objectSize > boxSizes[boxSizes.length-1]){
+			return -1;
 		}
-		else if (boxSizes[length/2] > objectSize) {
-			return getBoxSize(Arrays.copyOf(boxSizes, length/2), objectSize);
+
+		return getBestBox(boxSizes, objectSize, 0, boxSizes.length-1);
+	}
+
+	private static int getBestBox(int[] boxSizes, int objectSize, int low, int high){
+		int mid = low + (high-low)/2;
+
+		if (boxSizes[mid] == objectSize){
+			return boxSizes[mid];
 		}
-		else if (boxSizes[length/2] < objectSize && length/2 != 0) {
-			return getBoxSize(Arrays.copyOfRange(boxSizes, length/2, length), objectSize);
+		else if (boxSizes[mid] > objectSize){
+			if (mid==0 || boxSizes[mid-1] < objectSize){
+				return boxSizes[mid];
+			}
+			else {
+				return getBestBox(boxSizes, objectSize, low, mid);
+			}
 		}
 		else {
-			return -1;
+			return getBestBox(boxSizes, objectSize, mid, high);
 		}
 	}
 	
