@@ -4,32 +4,35 @@ import java.util.Arrays;
 
 //Find the smallest and swap
 public class SelectionSort {
-	
-	public static void sort(int[] inputArray) {
-		int smallestIndex;
-		
-		for (int i = 0; i < inputArray.length; i++) {
-			smallestIndex=i;
-			for (int j = i+1; j < inputArray.length; j++) {
-				if (inputArray[smallestIndex] > inputArray[j]) {
-					smallestIndex = j;
+
+	private static void doSelectionSort(int[] array){
+		int smallestNumber, foundIndex=0;
+
+		for (int i=0; i< array.length-1; i++) {
+			smallestNumber = array[i];
+			for (int j = i + 1; j < array.length; j++) {
+				if (smallestNumber > array[j]) {
+					smallestNumber = array[j];
+					foundIndex = j;
 				}
 			}
-			swap(inputArray, smallestIndex, i);
-			//System.out.println(Arrays.toString(inputArray) + " "+inputArray[smallestIndex]);
+
+			if (smallestNumber != array[i]) {
+				swap(array, i, foundIndex);
+			}
 		}
 	}
-	
-	private static void swap(int[] inputArray, int smallestIndex, int selectedIndex) {
-		int temp = inputArray[selectedIndex];
-		inputArray[selectedIndex] = inputArray[smallestIndex];
-		inputArray[smallestIndex] = temp;
+
+	private static void swap(int[] array, int smallIndex, int foundIndex){
+		int temp = array[smallIndex];
+		array[smallIndex] = array[foundIndex];
+		array[foundIndex] = temp;
 	}
-	
+
 	public static void main(String[] args) {
-		int[] inputArray = {1,0,2,9,3,8,4,7,5,6};
-		SelectionSort.sort(inputArray);
-		
+		int[] inputArray = {79, 93, 30, 62, 67, 7, 94, 2, 51, 87};
+		doSelectionSort(inputArray);
+
 		System.out.println(Arrays.toString(inputArray));
 	}
 }
