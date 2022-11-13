@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class TwoSum {
     public static int[] findTwoSum(int[] list, int sum) {
     	int[] returnArray = new int[2];
-    	HashMap<Integer,Integer> temp = new HashMap<Integer,Integer>();
+    	HashMap<Integer,Integer> temp = new HashMap<>();
     	temp.put(list[0],0);
     	
     	for (int i = 1; i < list.length; i++) {
