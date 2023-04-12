@@ -19,21 +19,20 @@ public class LowestCommonAncestor {
 
         tree.displayInorder();
 
-        tree.findLCA(3,7);
+        tree.findLCA(4, 7);
     }
 
     private static class Tree {
 
         TreeNode root;
+        boolean isLCAFound;
 
         public void findLCA(int node1, int node2){
+            isLCAFound = false;
             if (node2 == node1){
                 System.out.println(node1);
             }
 
-            if (root.value == node1 || root.value == node2){
-                System.out.println(root.value);
-            }
             System.out.println(findLCA(root, node1, node2));
         }
 
@@ -50,19 +49,24 @@ public class LowestCommonAncestor {
             int rightResult = findLCA(node.rightChild, node1, node2);
 
             if (leftResult!=-1 && rightResult!=-1){
+                isLCAFound = true;
                 return node.value;
             }
 
-            if (leftResult!=-1){
-                return leftResult;
+            if (isLCAFound){
+                if (leftResult!=-1){
+                    return leftResult;
+                }
+                else {
+                    return rightResult;
+                }
             }
-            else {
-                return rightResult;
-            }
+            return -1;
         }
 
         public void displayInorder(){
             displayInorder(root);
+            System.out.println();
         }
 
         private void displayInorder(TreeNode node){
