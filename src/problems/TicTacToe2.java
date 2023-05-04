@@ -1,49 +1,78 @@
 package problems;
 
 import java.util.Arrays;
-import java.util.Optional;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class TicTacToe2 {
     private static final Scanner SCANNER = new Scanner(System.in);
-    int[][] board;
-    int[] input;
-    int size = 3;
-    private static final String PLAYERS[] = {"Player1", "Player2"};
+    private int[][] board;
+    private int[] input;
+    private final int size;
+    private int turn;
+    private static final String[] PLAYERS = {"Player1", "Player2"};
+    private final int maxMoves;
 
-    TicTacToe2(Optional<Integer> size) {
-        this.size = size.isPresent() ? size.get() : 3;
+    TicTacToe2() {
+        this.size = 3;
+        maxMoves = size*size;
+        initBoard();
+    }
+
+    TicTacToe2(int size) {
+        this.size = size;
+        maxMoves = size*size;
+        initBoard();
+    }
+
+    private void initBoard(){
+        turn = 0;
         board = new int[this.size][this.size];
-        Arrays.fill(board, -3);
+        for (int[] rows : board){
+            Arrays.fill(rows, -3);
+        }
     }
 
     public void startGame(){
         int moveCount = 0;
-        boolean isGameOver = false;
-        int turn = 0;
-        while (!isGameOver && moveCount<9){
+        int isGameOver = 0;
+        while (isGameOver<=0 && moveCount<maxMoves){
             System.out.println(PLAYERS[turn] + ", Please enter the position in which you want to mark");
-            isGameOver = markUserInput(turn);
+            isGameOver = markUserInput();
+            if (isGameOver == 0){
+                moveCount ++;
+                switchPlayer();
+            }
+            else if (isGameOver == 1){
+                System.out.println(PLAYERS[turn] + " WINS!!!");
+            }
+        }
+        if (isGameOver == 0){
+            System.out.println("It's a Draw!!!");
         }
     }
 
-    private boolean markUserInput(int turn){
+    private void switchPlayer(){
+        turn = turn == 0 ? 1 : 0;
+    }
+
+    private int markUserInput(){
         input = getUserInput();
         if (isValidMove()){
             board[input[0]][input[1]] = turn;
         }
         else {
             System.out.println("Invalid Move!");
+            return -1;
         }
-        return isGameOver(turn);
+        return isGameOver()? 1 : 0;
     }
 
-    private boolean isGameOver(int turn){
-        return isHorizontalWin(turn) || isVerticalWin(turn) || isDiagonalWin(turn) || isCrossDiagonalWin(turn);
+    private boolean isGameOver(){
+        return isHorizontalWin() || isVerticalWin() || isDiagonalWin() || isCrossDiagonalWin();
     }
 
-    private boolean isHorizontalWin(int turn){
+    private boolean isHorizontalWin(){
         for (int entry : board[input[0]]){
             if (entry != turn){
                 return false;
@@ -52,16 +81,16 @@ public class TicTacToe2 {
         return true;
     }
 
-    private boolean isVerticalWin(int turn){
+    private boolean isVerticalWin(){
         for (int i=0; i<size; i++){
-            if (board[input[0]][i] != turn){
+            if (board[i][input[1]] != turn){
                 return false;
             }
         }
         return true;
     }
 
-    private boolean isDiagonalWin(int turn){
+    private boolean isDiagonalWin(){
         if(input[0]!=input[1]){
             return false;
         }
@@ -74,9 +103,9 @@ public class TicTacToe2 {
         return true;
     }
 
-    private boolean isCrossDiagonalWin(int turn){
-        for (int i=0, j=size; i<size; i++, j--){
-            if (board[input[i]][j] != turn){
+    private boolean isCrossDiagonalWin(){
+        for (int i=0, j=size-1; i<size; i++, j--){
+            if (board[i][j] != turn){
                 return false;
             }
         }
@@ -98,5 +127,10 @@ public class TicTacToe2 {
     private int[] getUserInput(){
         String input = SCANNER.nextLine();
         return Stream.of(input.split(" ")).mapToInt(Integer::parseInt).toArray();
+    }
+
+    public static void main(String[] args) {
+        TicTacToe2 ticTacToe = new TicTacToe2();
+        ticTacToe.startGame();
     }
 }
