@@ -26,7 +26,7 @@ public class MergeSort {
 		for (int i = low; i <= high; i++) {
 			tempArray[i] = inputArray[i];
 		}
-		System.out.println(Arrays.toString(tempArray));
+		//System.out.println(Arrays.toString(tempArray));
 
 		int i=low, j=mid+1;
 		for (int k = low; k <= high; k++) {
@@ -46,11 +46,17 @@ public class MergeSort {
 	}
 
 	public static void main(String[] args) {
+		long startTime = System.nanoTime();
+
 		//int[] inputArray = {1,0,2,9,3,8,4,7,5,6};
 		//int[] inputArray = {0,1,2,3,4,5,6,7,8,9};
-		int[] inputArray = {9,8,7,6,5,4,3,2,1,0};
+		int[] inputArray = {-2,38,-58,-6,-53,37,60,40};
 		MergeSort.sort(inputArray);
 
 		System.out.println(Arrays.toString(inputArray));
+
+		long endTime = System.nanoTime() - startTime;
+
+		System.out.println("Time:"+ endTime);
 	}
 }
